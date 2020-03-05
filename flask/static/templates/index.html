@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
+	<!-- responsive- mobile touch and zoom -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- SELF WRITTEN css -->
+    <link rel="stylesheet" type="text/css" href="boot.css">
+    <head>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      </head>
+
+
+    <title>Inspo Websites (Bootstrap exercise)</title>
+	
+  </head>
+<body width = 500px>
+  <script>
+    document.getElementById("demo").innerHTML = "My First JavaScript";
+    </script>
+    <div class="nav">
+	    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+
+      <img class="pixel" src="pixel.jpg" alt="navpic"> 
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	 
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    
+
+      <li class="nav-item">
+        <a class="nav-link" href="projects.html"> Checkpoints </a>
+      </li>
+    
+      </ul>
+   
+    </div>
+    </nav>
+</div>
+
+<div class ="page" id ="page1">
+    <h1 class="header">Inspo Websites (Bootstrap exercise)</h1>
+	<br>
+	<br>
+	  <div class="circle">
+
+	  </div>
+	<br>
+  <br>
+  <br>
+  <br>
+  <h1 class="header"> <a href= "#page2"> Design Inspiration </a> </h1>
+  </div>
+
+
+<div class="page" id ="page2">
+  <div class="card-deck">
+
+    <div class="card">
+      <img src="square.jpg" class="card-img-top" alt="square">
+      <div class="card-body">
+        <h5 class="card-title">Crazy Javascript</h5>
+        <p class="card-text"> 
+          <a href= "https://thecodeboss.dev" target="_blank"> thecodeboss.dev </a>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="labs.jpg" class="card-img-top" alt="labs">
+      <div class="card-body">
+        <h5 class="card-title">Tidy content display</h5>
+        <p class="card-text"> 
+          <a href= "https://labs.thesocietea.org/" target="_blank"> https://labs.thesocietea.org/ </a>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="google.jpg" class="card-img-top" alt="google">
+      <div class="card-body">
+        <h5 class="card-title">Use of  white space</h5>
+        <p class="card-text"> 
+          <a href= "https://google.com" target="_blank"> google.com </a>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+	
+	 <div class="card">
+      <img src="sakura.jpg" class="card-img-top" alt="google">
+      <div class="card-body">
+        <h5 class="card-title">Data Science visualisations by a rad girl. Javascript heavy & gorgeous </h5>
+        <p class="card-text"> 
+          <a href= "http://www.datasketch.es/june/" target="_blank"> datasketch.es/june/ </a>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+	
+		
+
+	
+
+
+
+
+   </div>
+</div>
+<h1 class="header"> <a href= "#page1"> Top </a> </h1>
+
+  </body>
+  <script>
+  
+    
+    $("body").on("click", function(e){
+        console.log(e);
+        var self  = $(this);
+        var div = $("<div></div>");
+
+        div.css({
+            "position":"absolute",
+            "left":e.originalEvent.clientX+"px",
+            "top":e.originalEvent.clientY+"px",
+            "width":"200px",
+            "height":"200px",
+            "background-image": "url('pixel.jpg')",
+            "background-size":  "cover"
+        });
+
+        self.append(div);
+
+    });
+</script>
+</html>
