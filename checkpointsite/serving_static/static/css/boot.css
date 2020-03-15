@@ -5,7 +5,7 @@
  overflow: hidden;
  margin-left: auto;
  margin-right: auto;
- background-image: url("me.jpg");
+ background-image: url("/images/me.jpg");
  background-size: cover;
 }
 

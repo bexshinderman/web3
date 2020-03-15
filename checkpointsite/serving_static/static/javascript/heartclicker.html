@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html style="height:100%">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body style ="height:100%">
+        <h1>blarg </h1>
+        <p id ="myParagraph">
+          Para!
+        </p>
+        <input type="text"/>
+    </body>
+    <script>
+        var timeout = null;
+        $("input").on("keyup",  function(e){
+            console.log(e);
+            var  self = $(this);
+            if(timeout)
+            clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            var newP = $("<p><p>");
+            newP.text(self.val());
+          
+                $("#myParagraph").append(newP);
+                self.val("");
+                clearTimeout(timeout);
+        },1000);
+        });
+        
+        $("body").on("click", function(e){
+            console.log(e);
+            var self  = $(this);
+            var div = $("<div></div>");
+
+            div.css({
+                "position":"absolute",
+                "left":e.originalEvent.clientX+"px",
+                "top":e.originalEvent.clientY+"px",
+                "width":"200px",
+                "height":"200px",
+                "background-image": "url('pixel.jpg')",
+                "background-size":  "cover"
+            });
+
+            self.append(div);
+
+        });
+    </script>
+</html>

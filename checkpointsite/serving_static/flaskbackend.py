@@ -1,7 +1,8 @@
 
 
 from flask import Flask, request, render_template
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
+
 
 @app.route('/')
 def hello_world():
@@ -17,10 +18,15 @@ def about():
 def page():
     return 'on page'
 
-@app.route('/template')
+@app.route('/index')
 def hello():
     
     return render_template("index.html")
+
+@app.route('/inspo')
+def inspo():
+    
+    return render_template("inspiration.html")
 
 
 
