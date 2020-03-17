@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title> {{titletag}} </title>
+ </head>
+ <body></body>
+  <form method="POST" action="/response">
+   Name: <input type="text" name="name" required><br>
+   <input type="submit" value="Submit">
+  </form>
+
+
+  {% if name %}
+  <h1> hello {{name}} </h1>
+
+  {% endif %}
+
+ </body>
+</html>

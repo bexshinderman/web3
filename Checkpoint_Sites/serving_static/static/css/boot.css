@@ -1,0 +1,98 @@
+.circle {
+ border-radius: 50%;
+ height: 250px;
+ width: 250px;
+ overflow: hidden;
+ margin-left: auto;
+ margin-right: auto;
+ background-image: url("/images/me.jpg");
+ background-size: cover;
+}
+.git
+{
+  margin: auto;
+  padding-top: 60px;
+text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+
+}
+.column{ width:100% }
+
+@media screen and (min-width: 600px) {
+  /* For tablets: */
+  .column { width: 50% }  
+}
+
+@media screen and (min-width: 1024px) {
+  /* For desktop: */
+  .column { width: 33.333% }  
+}
+
+
+.header { 
+text-align:center;
+color: grey;
+
+ }
+
+.pixel {
+	height: 100px;
+  width: 100px;
+  background-size: cover;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+ 
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+.nav {
+  padding-left: 1%;
+  font-size: 30px;
+}
+
+html{
+  position: relative;
+}
+body
+{
+  margin: auto;
+  width: 1500px;
+  height: 100%
+
+
+}
+.page
+{
+  padding-top: 100px;
+  height: 100vh;
+
+}
+.footer
+{
+  text-align: center;
+}
+
+.column{ width:100% }
+
+@media screen and (min-width: 600px) {
+  /* For tablets: */
+  .column { width: 50% }  
+}
+
+@media screen and (min-width: 1024px) {
+  /* For desktop: */
+  .column { width: 33.333% }  
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="height:100%">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body style="height:100%">
+        <h1>Heading</h1>
+        <p id="myParagraph">
+            Paragraph!!
+        </p>
+        <input type="text" />
+    </body>
+    <script>        
+        var timeout = null;
+        $("input").on("keyup", function(){
+            var self = $(this);
+            if(timeout)
+                clearTimeout(timeout);
+            
+            timeout = setTimeout(function(){
+                var newP = $("<p></p>");
+                newP.text(self.val());
+                var red = Math.floor(Math.random() * 255);
+                var green = Math.floor(Math.random() * 255);
+                var blue = Math.floor(Math.random() * 255);
+
+                newP.css("color","rgb("+red+","+green+","+blue+")");
+                $("#myParagraph").append(newP);
+                self.val("");
+                clearTimeout(timeout);
+            },1000);            
+        });
+        </sc

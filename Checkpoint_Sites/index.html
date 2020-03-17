@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
+	<!-- responsive- mobile touch and zoom -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- SELF WRITTEN css -->
+    <link rel="stylesheet" type="text/css" href="boot.css">
+    <head>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      </head>
+
+    <title>Inspo Websites (Bootstrap exercise)</title>
+	
+  </head>
+<body width = 500px>
+  <script>
+    document.getElementById("demo").innerHTML = "My First JavaScript";
+    </script>
+    <div class="nav">
+	    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+
+      <img class="pixel" src="pixel.jpg" alt="navpic"> 
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	 
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    
+
+      <li class="nav-item">
+        <a class="nav-link" href="inspiration.html"> Inspo </a>
+      </li>
+    
+      </ul>
+   
+    </div>
+    </nav>
+</div>
+
+<div class ="page" id ="page1">
+    <h1 class="header">Inspo Websites (Bootstrap exercise)</h1>
+	<br>
+	<br>
+	  <div class="circle">
+
+	  </div>
+	<br>
+  <br>
+  <br>
+  <br>
+  <h1 class="header"> <a href= "inspiration.html"> Design Inspiration </a> </h1>
+
+</div>
+
+
+  </body>
+  <script>
+  
+    
+    $("body").on("click", function(e){
+        console.log(e);
+        var self  = $(this);
+        var div = $("<div></div>");
+
+        div.css({
+            "position":"absolute",
+            "left":e.originalEvent.clientX+"px",
+            "top":e.originalEvent.clientY+"px",
+            "width":"200px",
+            "height":"200px",
+            "background-image": "url('pixel.jpg')",
+            "background-size":  "cover",
+            "mix-blend-mode": "multiply"
+        });
+
+        self.append(div);
+
+    });
+</script>
+</html>
