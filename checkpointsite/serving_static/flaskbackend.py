@@ -4,22 +4,15 @@ from flask import Flask, request, render_template
 app = Flask(__name__,static_url_path='')
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/load_data')
+def load_data():
+    return 'Success'
 
-@app.route('/about')
-@app.route('/about-us')
-@app.route('/aboutUs')
-def about():    
-    return "Just some plain text on the about page"
 
-@app.route('/page')
-def page():
-    return 'on page'
 
 @app.route('/index')
-def hello():
+@app.route('/home')
+def index():
     
     return render_template("index.html")
 
@@ -27,6 +20,21 @@ def hello():
 def inspo():
     
     return render_template("inspiration.html")
+
+@app.route('/page/<string:title>')
+def page(title):
+    return 'Title: ' + title
+   
+
+
+@app.route('/form')
+def form():
+    return render_template("form.html")
+@app.route('/response', methods=['POST'])
+def response():
+    name = request.form.get("name")
+    titletag = request.args.get('url')
+    return render_template("form.html", name=name)
 
 
 

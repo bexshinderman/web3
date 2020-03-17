@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+
+<title> {{title}}</title>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,9 +18,9 @@
     <title>Inspo Websites</title>
 	
   </head>
-  <body>
+  <body width = 500px>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-<img class="pixel" src="pixel.jpg" alt="Avatar"> 
+<img class="pixel" src="images/pixel.jpg" alt="Avatar" height=100px width= 100px> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,16 +28,19 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	 
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="inspiration.html"> Sites </a>
+        <a href="{{ url_for('inspo') }}">Inspo </a> 
       </li>
-     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      
+      &nbsp
+    <li class="nav-item">
+      <a href="{{ url_for('index') }}">Home </a> &nbsp
+    </li>
+
+    <li class="nav-item">
+      <a href="{{ url_for('page', user='bex') }}">Page</a> &nbsp
+    </li>
+  
     </ul>
    
   </div>
@@ -50,7 +57,7 @@
       <div class="card-deck">
     
         <div class="card">
-          <img src="square.jpg" class="card-img-top" alt="square">
+          <img src="images/square.jpg" class="card-img-top" alt="square">
           <div class="card-body">
             <h5 class="card-title">Crazy Javascript</h5>
             <p class="card-text"> 
@@ -63,7 +70,7 @@
         </div>
     
         <div class="card">
-          <img src="labs.jpg" class="card-img-top" alt="labs">
+          <img src="images/labs.jpg" class="card-img-top" alt="labs">
           <div class="card-body">
             <h5 class="card-title">Tidy content display</h5>
             <p class="card-text"> 
@@ -76,7 +83,7 @@
         </div>
     
         <div class="card">
-          <img src="google.jpg" class="card-img-top" alt="google">
+          <img src="images/google.jpg" class="card-img-top" alt="google">
           <div class="card-body">
             <h5 class="card-title">Use of  white space</h5>
             <p class="card-text"> 
@@ -89,7 +96,7 @@
         </div>
       
        <div class="card">
-          <img src="sakura.jpg" class="card-img-top" alt="google">
+          <img src="images/sakura.jpg" class="card-img-top" alt="google">
           <div class="card-body">
             <h5 class="card-title">Data Science visualisations by a rad girl. Javascript heavy & gorgeous </h5>
             <p class="card-text"> 
