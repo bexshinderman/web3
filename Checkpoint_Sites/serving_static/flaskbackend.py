@@ -1,14 +1,21 @@
 
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response, redirect, url_for
 app = Flask(__name__,static_url_path='')
+
+
+
 
 
 @app.route('/load_data')
 def load_data():
     return 'Success'
 
-
+@app.route('/title')
+def indextitle():
+    title = "Bex"
+    myName = "Bex"
+    return render_template('name.html', name=myName, title=title) #remmemmber to list vars when declaring!
 
 @app.route('/index')
 @app.route('/home')
@@ -24,7 +31,8 @@ def inspo():
 
 @app.route('/page/<string:title>')
 def page(title):
-    return 'Title: ' + title
+    #return 'Title: ' + title
+    return redirect(url_for("inspo"))
    
 
 
@@ -34,7 +42,6 @@ def form():
 @app.route('/response', methods=['POST'])
 def response():
     name = request.form.get("name")
-    titletag = request.args.get('url')
     return render_template("form.html", name=name)
 
 
@@ -42,4 +49,19 @@ def response():
 
 if __name__ =="__main__":
     app.run(debug=True,port=8080)
+
+
+
+from mongoengine import *
+connect('countries')
+class Country(Document):
+ 
+    name = StringField(primary_key = True)
+    code = StringField(required=True)
+    population = IntField()
+
+nz = Country(name='New Zealand', code='NZ', population=45000000)
+db.countries.insertOne({ name: 'Poland' })
+for countries in Country.objects:
+    countries.save()
 
