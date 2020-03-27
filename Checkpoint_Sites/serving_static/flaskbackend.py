@@ -65,3 +65,4 @@ db.countries.insertOne({ name: 'Poland' })
 for countries in Country.objects:
     countries.save()
 
+app.run(host='0.0.0.0', port=80)
