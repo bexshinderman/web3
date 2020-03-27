@@ -47,8 +47,8 @@ def response():
 
 
 
-if __name__ =="__main__":
-    app.run(debug=True,port=8080)
+
+
 
 
 
@@ -64,5 +64,5 @@ nz = Country(name='New Zealand', code='NZ', population=45000000)
 db.countries.insertOne({ name: 'Poland' })
 for countries in Country.objects:
     countries.save()
-
+if __name__ =="__main__":
 app.run(host='0.0.0.0', port=80)
