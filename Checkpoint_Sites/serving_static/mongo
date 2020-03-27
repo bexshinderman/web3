@@ -1,0 +1,12 @@
+from mongoengine import *
+connect('countries')
+class Country(Document):
+ 
+    name = StringField(primary_key = True)
+    code = StringField(required=True)
+    population = IntField()
+
+nz = Country(name='New Zealand', code='NZ', population=45000000)
+db.countries.insertOne({ name: 'Poland' })
+for countries in Country.objects:
+    countries.save()
