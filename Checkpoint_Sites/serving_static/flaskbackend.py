@@ -3,9 +3,8 @@
 from flask import Flask, request, render_template, Response, redirect, url_for
 app = Flask(__name__,static_url_path='')
 
-if __name__ =="__main__":
-    app.run(host='10.25.100.59', port=80)
 
+    
 
 
 @app.route('/load_data')
@@ -47,7 +46,8 @@ def response():
 
 
 
-
+if __name__ =="__main__":
+    app.run(debug=True,port=8080)
 
 
 
