@@ -4,12 +4,9 @@ from flask import Flask, request, render_template, Response, redirect, url_for
 app = Flask(__name__,static_url_path='')
 
 
-    
 
 
-@app.route('/load_data')
-def load_data():
-    return 'Success'
+
 
 @app.route('/title')
 def indextitle():
@@ -45,10 +42,38 @@ def response():
     return render_template("form.html", name=name)
 
 
+    
+
+from mongoengine import *
+connect('Checkpoint_DB')
+class User(Document):
+    email = StringField()
+    first_name = StringField()
+    last_name = StringField()
+bex = User(first_name='Bex', last_name='S')
+bex.save()
+
+class Countries(Document):
+    name = StringField()
+
+
+@app.route('/load_data')
+def load_data():
+  # nz = Checkpoint_DB.Countries.insert({ "name":"new zealand"})
+   #  nz.save()
+  #  list = db.Countries.find()
+  #  return list
+    nz1 = Countries(name="New Zealand 1")
+    nz1.save()
+    return "Success"
+
+    
+
+
 
 if __name__ =="__main__":
-    app.run(host='10.25.100.59',debug=True,port=8080)
-
+   # app.run(host='10.25.100.59',debug=True,port=8080) for deployment
+    app.run(debug=True,port=8080) #for local
 
 
 
