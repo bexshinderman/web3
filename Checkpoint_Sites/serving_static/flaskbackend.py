@@ -1,6 +1,6 @@
 
 
-from flask import Flask, request, render_template, Response, redirect, url_for
+from flask import Flask, request, render_template, Response, redirect, url_for, jsonify
 app = Flask(__name__,static_url_path='')
 
 
@@ -65,7 +65,7 @@ class Countries(Document):
 def addCountry():
   #  list = db.Countries.find()
   #  return list
-    nz1 = Countries(name="New Zealand 1")
+    nz1 = Countries(name="New Zealand 2")
     nz1.save()
     return "Success"
 
@@ -84,7 +84,7 @@ def getCountries():
     country = Countries.objects
     return country.to_json()
 
-@app.route('/getCountries/<string:name>', methods=['GET'])
+@app.route('/getCountries/<name>', methods=['GET'])
 def getCountriesByName(name):
     country = Countries.objects.get(name=name)
     return country.to_json()
@@ -100,6 +100,39 @@ def getUserByFirstName(first_name):
     users = User.objects.get(first_name=first_name)
     return users.to_json()
 
+#@app.route('/newuser', methods=['POST'])
+#def new_user():
+#    first_name = request.form.get("first_name")
+ #   last_name = request.form.get("last_name")
+ #   email = request.form.get("email")
+ #   return render_template("form.html", first_name=first_name, last_name=last_name, email=email)
+
+@app.route('/userform')
+def userform():
+    return render_template("form.html")
+
+
+users2 = [
+    {
+        'first_name': 'cats',
+        'last_name': 'dogs',
+        'email': 'cats@dogs.com'
+    }
+    
+]
+@app.route('/users2')
+def getusers2():
+    return jsonify(users2)
+@app.route('/users2', methods = ['POST'])
+def new_user():
+    User.append(request.get_json())
+    #first_name = request.form.get('first_name')
+   # last_name = request.form.get('last_name')
+    #email = request.form.get('last_name')
+    #newuser = User(first_name = "first_name", last_name = "last_name", email="email" )
+    #newuser.save
+    ##newuser = db.user.insert({ "first_name": first_name, "last_name": last_name, "email": email })
+    #return render_template("form.html", first_name = first_name, last_name = last_name, email=email)
 
 if __name__ =="__main__":
    # app.run(host='10.25.100.59',debug=True,port=8080) for deployment

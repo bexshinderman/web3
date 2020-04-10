@@ -5,8 +5,10 @@
   <title> {{titletag}} </title>
  </head>
  <body></body>
-  <form method="POST" action="/response">
-   Name: <input type="text" name="name" required><br>
+  <form action = "{{ url_for('new_user') }}" method="POST" action="/response">
+   Name: <input type="text" name="first_name" required><br>
+   Surname: <input type="text" name="last_name" required><br>
+   Email: <input type="text" name="email" required><br>
    <input type="submit" value="Submit">
   </form>
 
