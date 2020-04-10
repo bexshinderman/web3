@@ -135,8 +135,8 @@ def new_user():
     #return render_template("form.html", first_name = first_name, last_name = last_name, email=email)
 
 if __name__ =="__main__":
-   # app.run(host='10.25.100.59',debug=True,port=8080) for deployment
-    app.run(debug=True,port=8080) #for local
+    app.run(host='10.25.100.59',debug=True,port=8080) #for deployment
+    #app.run(debug=True,port=8080) #for local
 
 
 
