@@ -70,9 +70,9 @@ def addCountry():
     return "Success"
 
 @app.route('/addCountry/<name>', methods=['POST']) #hardcode adding to db
-def addUser(name):
+def addCountry1(name):
 
-    country = Checkpoint_DB.Countries.insert({ "name": name })
+    country = Countries(name=name)
     country.save()
   #  list = db.Countries.find()
   #  return list
