@@ -15,8 +15,20 @@ class Country(Document):
 @app.route('/country', methods=['POST', 'GET', 'DELETE'])
 def country():
     if request.method == 'GET':
-        country = Country.objects
-        return country.to_json()
+        name = request.form.get('name')
+        if name:
+            country = Country.objects.get(name=name)
+            output = country.to_json()
+
+            #if no input entered
+        else:
+            message = "No Country entered, Complete list"
+            print(message)
+            country = Country.objects
+            getcountry = country.to_json()
+            output = {'No Country entered, Complete list' : getcountry }
+        return output
+   
 
 
     if request.method == 'POST':
@@ -33,7 +45,7 @@ def country():
        return country.to_json()
      
 
-    # new = Countries(name=name).save()
+   
    
 @app.route('/getCountry', methods=['GET'])
 def getCountry():
