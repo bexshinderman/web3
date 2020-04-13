@@ -100,6 +100,17 @@ def getUserByFirstName(first_name):
     users = User.objects.get(first_name=first_name)
     return users.to_json()
 
+@app.route('/users', methods=['POST'])
+def new_user():
+    users = User.objects.get()
+ #   first_name = request.json['first_name']
+   # last_name = request.json['last_name']
+  #  email= request.json['email']
+
+    db.user.insert( { first_name: "Ken", last_name: "Smith", email: "Ken@Smith.com" } )
+
+    return('success')
+
 #@app.route('/newuser', methods=['POST'])
 #def new_user():
 #    first_name = request.form.get("first_name")
@@ -120,12 +131,11 @@ users2 = [
     }
     
 ]
-@app.route('/users2')
-def getusers2():
-    return jsonify(users2)
-@app.route('/users2', methods = ['POST'])
-def new_user():
-    User.append(request.get_json())
+#@app.route('/users2')
+#def getusers2():
+#@app.route('/users2', methods = ['POST'])
+#def new_user():
+   # User.append(request.get_json())
     #first_name = request.form.get('first_name')
    # last_name = request.form.get('last_name')
     #email = request.form.get('last_name')
@@ -135,8 +145,8 @@ def new_user():
     #return render_template("form.html", first_name = first_name, last_name = last_name, email=email)
 
 if __name__ =="__main__":
-    app.run(host='10.25.100.59',debug=True,port=8080) #for deployment
-    #app.run(debug=True,port=8080) #for local
+    #app.run(host='10.25.100.59',debug=True,port=8080) #for deployment
+    app.run(debug=True,port=8080) #for local
 
 
 
