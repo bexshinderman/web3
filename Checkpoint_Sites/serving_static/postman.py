@@ -12,7 +12,7 @@ class Country(Document):
 
 
 
-@app.route('/country', methods=['POST', 'GET'])
+@app.route('/country', methods=['POST', 'GET', 'DELETE'])
 def country():
     if request.method == 'GET':
         country = Country.objects
@@ -24,7 +24,13 @@ def country():
        name = request.form.get('name') 
        new = Country(name=name).save()
        return country.to_json()
-    if requ
+
+    if request.method == 'DELETE':
+       country = Country.objects
+       name = request.form.get('name') 
+       delname  = Country.objects.get(name=name)
+       delname.delete()
+       return country.to_json()
      
 
     # new = Countries(name=name).save()
