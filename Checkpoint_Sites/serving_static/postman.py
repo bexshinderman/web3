@@ -15,27 +15,39 @@ class Country(Document):
 @app.route('/country', methods=['POST', 'GET', 'DELETE'])
 def country():
     if request.method == 'GET':
+
+        #obtain name from formm in postman
         name = request.form.get('name')
+
+        #if name entered
         if name:
+            #find country that matches name
             country = Country.objects.get(name=name)
             output = country.to_json()
 
             #if no input entered
         else:
-            message = "No Country entered, Complete list"
-            print(message)
             country = Country.objects
             getcountry = country.to_json()
-            output = {'No Country entered, Complete list' : getcountry }
+            output = 'No Country entered, Complete list: \n' + getcountry 
         return output
    
 
 
     if request.method == 'POST':
+       #get countries from db
        country = Country.objects
+       #obtain country name from form in postman
        name = request.form.get('name') 
-       new = Country(name=name).save()
-       return country.to_json()
+       #if name obtained
+       if name:
+             #save new country name to Country table
+            new = Country(name=name).save()
+            output = name + ' added to  database \n' + country.to_json()
+       #if no name obtained
+       else:
+            output = "No input received, no Country added"
+    return output
 
     if request.method == 'DELETE':
        country = Country.objects
