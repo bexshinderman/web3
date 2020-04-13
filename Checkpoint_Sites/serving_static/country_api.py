@@ -59,8 +59,8 @@ def country(country_id=None):
         #obtain country name from form in postman
         name = request.form.get('name') 
         if name:
-            #get the Country to be deleted that matches input
-            delname  = Country.objects.get(name=name)
+            #get the Country to be deleted that matches input *delname  = Country.objects.get(name=name) throws error if multiple
+            delname = Country.objects(name=country_id).all()
             #delete from db
             delname.delete()
             output = name + ' deleted! \n' + country.to_json()
