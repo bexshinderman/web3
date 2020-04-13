@@ -90,6 +90,7 @@ def getCountriesByName(name):
     return country.to_json()
 
 
+
 @app.route('/users', methods=['GET'])
 def users():
     users = User.objects
