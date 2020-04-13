@@ -47,15 +47,18 @@ def country():
        #if no name obtained
        else:
             output = "No input received, no Country added"
-    return output
+       return output
 
     if request.method == 'DELETE':
-       country = Country.objects
-       name = request.form.get('name') 
-       delname  = Country.objects.get(name=name)
-       delname.delete()
-       return country.to_json()
-     
+        country = Country.objects
+        name = request.form.get('name') 
+        if name:
+            delname  = Country.objects.get(name=name)
+            delname.delete()
+            output = name + ' deleted! \n' + country.to_json()
+        else:
+            output = "No input received, nothing deleted"
+    return output 
 
    
    
