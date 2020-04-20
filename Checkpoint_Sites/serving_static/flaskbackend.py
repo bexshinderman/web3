@@ -2,8 +2,11 @@
 
 from flask import Flask, request, render_template, Response, redirect, url_for, jsonify
 app = Flask(__name__,static_url_path='')
+import os
+import csv
 
-
+#csv files
+app.config.from_object('config')
 
 @app.route('/title')
 def indextitle():
@@ -15,7 +18,7 @@ def indextitle():
 @app.route('/home')
 @app.route('/')
 def index():
-    
+   
     return render_template("index.html")
 
 @app.route('/inspo')
@@ -41,8 +44,24 @@ def response():
 
 @app.route('/load_data')
 def load_data():
-    return "Success"
+    path = os.path.join(app.config['FILES_FOLDER'],"life_expectancy_years.csv")
+    f = open(path)
+    r = csv.reader(f)
+    d = list(r)
+    for data in d:
+        print(data)
+    
+    for file in os.listdir(app.config['FILES_FOLDER']):
+        filename = os.fsdecode(file)
+        path = os.path.join(app.config['FILES_FOLDER'],filename)
+        f = open(path)
+        r = csv.reader(f)
+        d = list(r)
+        for data in d:
+            print(data)
+        print('***********************************************************************************')
 
+    return "Success"
 #mongodb stuff    
 
 from mongoengine import *
@@ -175,6 +194,7 @@ users2 = [
     #newuser.save
     ##newuser = db.user.insert({ "first_name": first_name, "last_name": last_name, "email": email })
     #return render_template("form.html", first_name = first_name, last_name = last_name, email=email)
+
 
 if __name__ =="__main__":
     #app.run(host='10.25.100.59',debug=True,port=8080) #for deployment
