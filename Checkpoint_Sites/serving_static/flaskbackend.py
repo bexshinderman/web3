@@ -4,6 +4,7 @@ from flask import Flask, request, render_template, Response, redirect, url_for, 
 app = Flask(__name__,static_url_path='')
 import os
 import csv
+import pandas
 
 #csv files
 app.config.from_object('config')
@@ -35,33 +36,45 @@ def page(title):
 
 @app.route('/form')
 def form():
-    return render_template("form.html")
+    
+    return render_template("form.html", name=name)
 
 @app.route('/response', methods=['POST'])
 def response():
     name = request.form.get("name")
     return render_template("form.html", name=name)
 
+@app.route('/stocks')
+def Stocks():
+    filename = 'life_expectancy_years.csv'
+    data = pandas.read_csv(filename, header=0)
+    stocklist = list(data.values.flatten())
+    return render_template('csv.html', stocklist=stocklist)
+
+
 @app.route('/load_data')
 def load_data():
+    #individual csvs
     path = os.path.join(app.config['FILES_FOLDER'],"life_expectancy_years.csv")
     f = open(path)
     r = csv.reader(f)
     d = list(r)
-    for data in d:
-        print(data)
-    
+ 
+    #all csvs
     for file in os.listdir(app.config['FILES_FOLDER']):
         filename = os.fsdecode(file)
         path = os.path.join(app.config['FILES_FOLDER'],filename)
         f = open(path)
         r = csv.reader(f)
-        d = list(r)
-        for data in d:
-            print(data)
-        print('***********************************************************************************')
+        datalist = list(r)
+        
 
-    return "Success"
+        for data in datalist:
+            print(data)
+            
+            print('***********************************************************************************')
+
+    return render_template("csv.html")
 #mongodb stuff    
 
 from mongoengine import *
@@ -100,7 +113,8 @@ def country(country_id=None):
             else:
                 country = Country.objects
                 getcountry = country.to_json()
-                output = 'No Country entered, Complete list: \n' + getcountry 
+                output = {"message": 'No Country entered, Complete list', "countries": getcountry}
+               # output = 'No Country entered, Complete list: \n' + getcountry 
         #if country_id is given in route display all  matching values
         else:
                 country = Country.objects(name=country_id).all()
@@ -137,7 +151,10 @@ def country(country_id=None):
         #if no name is entered    
         else:
             output = "No input received, nothing deleted"
-    return output 
+        return output 
+
+   
+        
 
 
 
@@ -162,12 +179,12 @@ def new_user():
 
     return('success')
 
-#@app.route('/newuser', methods=['POST'])
-#def new_user():
-#    first_name = request.form.get("first_name")
- #   last_name = request.form.get("last_name")
- #   email = request.form.get("email")
- #   return render_template("form.html", first_name=first_name, last_name=last_name, email=email)
+@app.route('/newuserr', methods=['POST'])
+def new_user1():
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    email = request.form.get("email")
+    return render_template("form.html", first_name=first_name, last_name=last_name, email=email)
 
 @app.route('/userform')
 def userform():

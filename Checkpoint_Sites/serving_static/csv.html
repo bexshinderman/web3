@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title> {{titletag}} </title>
+ </head>
+ <body>
+
+    <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ticker</th>
+        <th>Closing Price</th>
+        <th>Closing Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for eachstocks in stocklist%}
+      <tr>
+        <td>{{ eachstocks }}</td>
+        <td>{{ eachstocks }}</td>
+        <td>{{ eachstocks }}</td>
+        <td>{{ eachstocks }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ </body>
+</html>
