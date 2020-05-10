@@ -2,21 +2,44 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title> {{titletag}} </title>
+  <title> </title>
  </head>
- <body></body>
-  <form action = "{{ url_for('new_user') }}" method="POST" action="/response">
-   Name: <input type="text" name="first_name" required><br>
-   Surname: <input type="text" name="last_name" required><br>
-   Email: <input type="text" name="email" required><br>
-   <input type="submit" value="Submit">
-  </form>
+ <body>
+
+    <input type="text" id="countryName" name = "postCountry"/>
+
+    <button type="submit" id="postCountry" value="Submit"> Submit</button>
 
 
-  {% if name %}
-  <h1> hello {{name}} </h1>
+   
 
-  {% endif %}
+    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+<script>
+var name;
+$.get("/country", function(response){
+name = response.name;
+console.log(response);
+});
 
+$('#postCountry').click(function(){
+var name = $('#countryName').val()
+$.ajax({
+  url: "/country",
+  type:"POST",
+  data:{name:name},
+}).done(function(response){
+    console.log(response)
+    })
+    .fail(function(response){
+    console.log(response)
+    })
+    .always(function(response){
+    console.log(response)
+});
+});
+    </script>
  </body>
+
+
+
 </html>
