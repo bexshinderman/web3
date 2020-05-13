@@ -5,6 +5,7 @@ app = Flask(__name__,static_url_path='')
 import os
 import csv
 import pandas
+import json
 
 #csv files
 app.config.from_object('config')
@@ -37,7 +38,7 @@ def page(title):
 @app.route('/form')
 def form():
     
-    return render_template("form.html", name=name)
+    return render_template("form.html")
 
 @app.route('/response', methods=['POST'])
 def response():
@@ -114,11 +115,13 @@ def country(country_id=None):
                 country = Country.objects
                 getcountry = country.to_json()
                 output = {"message": 'No Country entered, Complete list', "countries": getcountry}
+                output = json.dumps(output)
                # output = 'No Country entered, Complete list: \n' + getcountry 
         #if country_id is given in route display all  matching values
         else:
                 country = Country.objects(name=country_id).all()
                 output = country.to_json()
+                output = json.dumps(output)
         return output
 
     if request.method == 'POST':
@@ -144,7 +147,7 @@ def country(country_id=None):
         if name:
             #get the Country to be deleted that matches input
             #delname  = Country.objects.get(name=name) will throw an error if multiples
-            delname = Country.objects(name=country_id).all()
+            delname = Country.objects(name=name)
             #delete from db
             delname.delete()
             output = name + ' deleted! \n' + country.to_json()
@@ -155,7 +158,6 @@ def country(country_id=None):
 
    
         
-
 
 
 @app.route('/users', methods=['GET'])

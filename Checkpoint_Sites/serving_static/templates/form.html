@@ -5,21 +5,61 @@
   <title> </title>
  </head>
  <body>
-
+  <svg></svg>
     <input type="text" id="countryName" name = "postCountry"/>
 
-    <button type="submit" id="postCountry" value="Submit"> Submit</button>
+    <button type="submit" id="getCountry" value="Submit"> GET All REQUEST </button>
 
+    <button type="submit" id="getCountry1" value="Submit"> GET 1 REQUEST </button>
 
-   
+    <button type="submit" id="postCountry" value="Submit"> POST REQUEST </button>
 
-    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+    <button type="submit" id="putCountry" value="Submit"> PUT REQUEST </button>
+
+    <button type="submit" id="delCountry" value="Submit">DELETE REQUEST </button>
+
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
+    
+
+// get all the things
+$('#getCountry').click(function(){
 var name;
 $.get("/country", function(response){
-name = response.name;
-console.log(response);
+    var responseObj = JSON.parse(response);
+  
+    // a common thing is to 'wrap' some elements in a 'g' container (group)
+    // this is like wrapping html elements in a container div
+    var g = d3.select("svg").selectAll("g").data(responseObj.countries);
+
+    // create new 'g' elements for each country
+    var en = g.enter().append("g")
+        .attr("transform",function(d){ 
+        return "translate("+ (Math.random() * 100) + 40 + "," + (Math.random() * 100) + 40 +")" 
+    });
+
+    // add a circle to each 'g'
+    var circle = en.append("circle")
+        .attr("r",function(d){ return Math.random() * 20 })
+        .attr("fill",function(d,i){ return i % 2 == 0 ? "red" : "blue" });
+
+    // add a text to each 'g'
+    en.append("text").text(function(d){ return d.name });
+    console.log(response);
 });
+});
+
+//get one of the things (toggling with GET REQ button)
+$('#getCountry1').click(function(){
+var name = $('#countryName').val();
+$.get("/country/" + name, function(response){
+    console.log(response);
+});
+});
+
+
+
 
 $('#postCountry').click(function(){
 var name = $('#countryName').val()
@@ -32,10 +72,39 @@ $.ajax({
     })
     .fail(function(response){
     console.log(response)
-    })
-    .always(function(response){
-    console.log(response)
+    });
+   
 });
+
+$('#delCountry').click(function(){
+var name = $('#countryName').val()
+$.ajax({
+  url: "/country",
+  type:"DELETE",
+  data:{name:name},
+}).done(function(response){
+    console.log(response)
+    })
+    .fail(function(response){
+    console.log(response)
+    });
+   
+});
+
+
+$('#putCountry').click(function(){
+var name = $('#countryName').val()
+$.ajax({
+  url: "/country",
+  method:"PUT",
+  data:{name:name},
+}).done(function(response){
+    console.log(response)
+    })
+    .fail(function(response){
+    console.log(response)
+    });
+   
 });
     </script>
  </body>
