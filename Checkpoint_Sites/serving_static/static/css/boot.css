@@ -96,3 +96,7 @@ body
   /* For desktop: */
   .column { width: 33.333% }  
 }
+svg
+{
+  background-size: cover;
+}
