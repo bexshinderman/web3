@@ -52,30 +52,6 @@ def Stocks():
     stocklist = list(data.values.flatten())
     return render_template('csv.html', stocklist=stocklist)
 
-
-@app.route('/load_data')
-def load_data():
-    #individual csvs
-    path = os.path.join(app.config['FILES_FOLDER'],"life_expectancy_years.csv")
-    f = open(path)
-    r = csv.reader(f)
-    d = list(r)
- 
-    #all csvs
-    for file in os.listdir(app.config['FILES_FOLDER']):
-        filename = os.fsdecode(file)
-        path = os.path.join(app.config['FILES_FOLDER'],filename)
-        f = open(path)
-        r = csv.reader(f)
-        datalist = list(r)
-        
-
-        for data in datalist:
-            print(data)
-            
-            print('***********************************************************************************')
-
-    return render_template("csv.html")
 #mongodb stuff    
 
 from mongoengine import *
@@ -90,8 +66,69 @@ class User(Document):
 
 class Country(Document):
     name = StringField()
+    data = DictField()
+
+@app.route('/load_data')
+def load_data():
+    #individual csvs
+    path = os.path.join(app.config['FILES_FOLDER'],"internet_users.csv")
+    f = open(path)
+    r = csv.reader(f)
+    d = list(r)
+
+    filename = os.fsdecode(path)
+    print(filename)
+    #for data in d:
+       # print(data)
+   
+    for data in d:
+        country = Country()
+        dict = {}
+        for data in d:
+            country = Country() # a blank placeholder country
+            dict = {} # a blank placeholder data dict
+            for key in data: # iterate through the header keys
+                if key == "country":
+                    for data in d:
+                        countryName = data[0]
+                        country = countryName
+                        print(countryName)
+
+                    # if the country does not exist, we can use the new blank country we created above, and set the name
+
+                    
+                    if Country.objects(name = countryName).count() == 0:
+
+                        print('No entries')
+                        country['name'] = countryName
+                        country.save()
+
+                    # if the country already exists, replace the blank country with the existing country from the db, and replace the blank dict with the current country's 
+                    # data 
+            else:
+                f = filename.replace(".csv","") # we want to trim off the ".csv" as we can't save anything with a "." as a mongodb field name
+                #print("filename f without the .csv", f)
+                if f in dict: # check if this filename is already a field in the dict
+                    for data in d
+                    dict[f][key] = data[key] # if it is, just add a new subfield which is key : data[key] (value)
+                else:
+                    dict[f] = {key:data[key]} # if it is not, create a new object and assign it to the dict
+    
+    return("printyboi")
 
 
+ #all csvs
+    #for file in os.listdir(app.config['FILES_FOLDER']):
+     #   filename = os.fsdecode(file)
+       # path = os.path.join(app.config['FILES_FOLDER'],filename)
+        #f = open(path)
+       # r = csv.reader(f)
+       # datalist = list(r)
+        #for data in datalist:
+            #print(data)
+            
+           # print('***********************************************************************************')
+    #return render_template("csv.html")
 #API stuff
 
 @app.route('/country', methods=['POST', 'GET', 'DELETE'])
