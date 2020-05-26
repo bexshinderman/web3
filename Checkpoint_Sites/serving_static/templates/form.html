@@ -16,11 +16,12 @@
 
     <button type="submit" id="getCountry1" value="Submit"> GET 1 REQUEST </button>
 
-    <button type="submit" id="postCountry" value="Submit"> POST REQUEST </button>
+    <button type="submit" id="postCountry" value="Submit" onClick="postresponse()"> POST REQUEST </button>
 
     <button type="submit" id="putCountry" value="Submit"> PUT REQUEST </button>
 
-    <button type="submit" id="delCountry" value="Submit">DELETE REQUEST </button>
+    <button type="submit" id="delCountry" value="Submit" onClick="deleteresponse()">DELETE REQUEST </button>
+
 
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -56,7 +57,7 @@ $.get("/country", function(response){
 
     // add a text to each 'g'
     en.append("text").text(function(d){ return d.name });
-    //console.log(response);
+    console.log(response);
     
 });
 });
@@ -85,6 +86,10 @@ $.ajax({
     });
    
 });
+function postresponse() {
+  alert("Entry created!");
+}
+
 
 $('#delCountry').click(function(){
 var name = $('#countryName').val()
@@ -101,6 +106,9 @@ $.ajax({
    
 });
 
+function deleteresponse() {
+  alert("Entry deleted!");
+}
 
 $('#putCountry').click(function(){
 var name = $('#countryName').val()

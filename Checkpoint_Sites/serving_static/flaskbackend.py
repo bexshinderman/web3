@@ -91,28 +91,27 @@ def load_data():
                 if key == "country":
                     for data in d:
                         countryName = data[0]
-                        country = countryName
                         print(countryName)
 
                     # if the country does not exist, we can use the new blank country we created above, and set the name
 
                     
-                    if Country.objects(name = countryName).count() == 0:
+                        if Country.objects(name = countryName).count() == 0:
 
-                        print('No entries')
-                        country['name'] = countryName
-                        country.save()
+                            print('No entries')
+                            country['name'] = countryName
+                            country.save()
 
                     # if the country already exists, replace the blank country with the existing country from the db, and replace the blank dict with the current country's 
                     # data 
-            else:
-                f = filename.replace(".csv","") # we want to trim off the ".csv" as we can't save anything with a "." as a mongodb field name
+                        else:
+                            f = filename.replace(".csv","") # we want to trim off the ".csv" as we can't save anything with a "." as a mongodb field name
                 #print("filename f without the .csv", f)
-                if f in dict: # check if this filename is already a field in the dict
-                    for data in d
-                    dict[f][key] = data[key] # if it is, just add a new subfield which is key : data[key] (value)
-                else:
-                    dict[f] = {key:data[key]} # if it is not, create a new object and assign it to the dict
+               # if f in dict: # check if this filename is already a field in the dict
+                    
+                #    dict[f][key] = data[key] # if it is, just add a new subfield which is key : data[key] (value)
+              #  else:
+                #    dict[f] = {key:data[key]} # if it is not, create a new object and assign it to the dict
     
     return("printyboi")
 
